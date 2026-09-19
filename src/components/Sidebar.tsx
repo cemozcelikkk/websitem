@@ -1,4 +1,4 @@
-import { Mail, ExternalLink } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 interface SidebarProps {
   activeSection: string;
