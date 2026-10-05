@@ -1,37 +1,29 @@
+import type { ReactNode } from 'react';
+
+// Metin içindeki anahtar kelimeler için hafif "kod" vurgusu
+function Code({ children }: { children: ReactNode }) {
+  return (
+    <code className="rounded bg-chip px-1.5 py-0.5 font-mono text-[0.82em] text-ink">{children}</code>
+  );
+}
+
 export default function About() {
   return (
-    <section
-      id="about"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-      aria-label="Hakkımda"
-    >
-      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">
-          Hakkımda
-        </h2>
-      </div>
-      <div>
-        <p className="mb-4 text-slate-400 leading-relaxed">
-          Çukurova Üniversitesi Bilgisayar Bilimleri 4. sınıf öğrencisiyim.
-          Yazılım geliştirme süreçlerine olan ilgim, akademik eğitimimle birleşerek
-          beni uçtan uca çözümler üretebilen bir geliştirici haline getirdi.
+    <section id="about" aria-label="Hakkımda" className="fade-up mt-20 md:mt-32 [animation-delay:120ms]">
+      <h2 className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-ink">
+        Hakkımda
+      </h2>
+
+      <div className="max-w-[62ch] space-y-6 text-lg leading-[1.75] text-pretty text-body md:text-xl">
+        <p>
+          <Code>Çukurova Üniversitesi</Code>'nde bilgisayar bilimleri okuyorum, son sınıftayım.
+          Okulda algoritmaları ve veri yapılarını öğreniyorum; geri kalan zamanda insanların
+          kullandığı küçük ürünler yapıyorum — <Code>API</Code>'sini yazıp sunucusunu kendim
+          kurduğum, <Code>DNS</Code> kaydını kendim girdiğim türden.
         </p>
-        <p className="mb-4 text-slate-400 leading-relaxed">
-          Odak alanım{' '}
-          <span className="text-slate-200 font-medium">FastAPI</span>,{' '}
-          <span className="text-slate-200 font-medium">Django</span>,{' '}
-          <span className="text-slate-200 font-medium">Flask</span>,{' '}
-          <span className="text-slate-200 font-medium">React</span> ve{' '}
-          <span className="text-slate-200 font-medium">Python</span>{' '}
-          ekosistemleri ile web platformları ve REST API geliştirme üzerine yoğunlaşmaktadır.
-        </p>
-        <p className="text-slate-400 leading-relaxed">
-          Altyapı ve dağıtım tarafında{' '}
-          <span className="text-slate-200 font-medium">AWS EC2</span>,{' '}
-          <span className="text-slate-200 font-medium">Cloudflare</span> DNS/SSL,{' '}
-          <span className="text-slate-200 font-medium">Vercel</span> ve{' '}
-          <span className="text-slate-200 font-medium">Git/GitHub</span>{' '}
-          CI/CD süreçlerinin bizzat yönetimi ve yapılandırması konularında deneyim sahibiyim.
+        <p>
+          Aşağıdaki liste bir yetenek tablosu değil, bir günlük. Her işin altına neyi
+          kullandığımı ve neden onu seçtiğimi not ettim.
         </p>
       </div>
     </section>

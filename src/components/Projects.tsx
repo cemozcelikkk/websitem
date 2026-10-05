@@ -1,91 +1,134 @@
-import { ExternalLink } from 'lucide-react';
-
 interface Project {
+  kind: string;
   title: string;
-  url: string;
-  description: string;
-  tags: string[];
+  url?: string;
+  summary: string;
+  notes: string[];
+  stack: string[];
 }
 
 const projects: Project[] = [
   {
-    title: 'EduPortal — Öğrenci & Kurum Yönetim Sistemi',
-    url: 'https://edu-portal-dusky.vercel.app',
-    description:
-      'Okul ve özel eğitim kurumlarının süreçlerini dijitalleştirmek amacıyla uçtan uca tasarlanan web tabanlı yönetim sistemi. Python ile ölçeklenebilir veritabanı mimarisi, AWS EC2 üzerinde sunucu yapılandırması ve bulut bütçe/güvenlik kurguları bizzat gerçekleştirildi.',
-    tags: ['FastAPI', 'React', 'PostgreSQL', 'AWS EC2', 'Vercel'],
-  },
-  {
-    title: 'Mooii — Dijital QR Menü Platformu',
+    kind: 'web',
+    title: 'Mooii',
     url: 'https://mooii-co-chi.vercel.app',
-    description:
-      'Gıda işletmeleri için geliştirilen mobil uyumlu dijital menü web platformu. CI/CD entegrasyonu Vercel üzerinden sağlanarak kesintisiz dağıtım kurgulandı.',
-    tags: ['React', 'JavaScript', 'Vercel CI/CD', 'Responsive UI'],
+    summary: 'İşletmeler için masadaki QR koddan açılan dijital menü.',
+    notes: [
+      'Menü neredeyse her zaman telefonda açılıyor; arayüz mobil ekrandan başlanarak tasarlandı.',
+      "Repo Vercel'e bağlı: main'e giden her push canlıya çıkıyor, ayrı bir yayın adımı yok.",
+    ],
+    stack: ['React', 'JavaScript', 'Vercel'],
   },
   {
-    title: 'Cevher Sönmez — Kurumsal Web Sitesi',
+    kind: 'web',
+    title: 'cevhersonmez.com',
     url: 'https://cevhersonmez.com',
-    description:
-      'Klinik psikolog için uçtan uca tasarlanan kurumsal web arayüzü. Alan adı yönlendirmeleri, SSL güvenliği ve DNS yönetim süreçleri Cloudflare altyapısı üzerinde yapılandırıldı.',
-    tags: ['Frontend UI', 'Cloudflare DNS', 'SSL/Security'],
+    summary: 'Bir klinik psikolog için kurumsal web sitesi.',
+    notes: [
+      'Alan adı, DNS kayıtları, yönlendirmeler ve SSL Cloudflare üzerinden yönetiliyor.',
+    ],
+    stack: ['Frontend', 'Cloudflare DNS', 'SSL'],
   },
+  // TODO: Aşağıdaki şablonları kendi bilgilerinle doldurup yorumdan çıkar.
+  // {
+  //   kind: 'staj',
+  //   title: '<Şirket> — <proje adı>',
+  //   summary: '<Ne yaptın, tek cümle.>',
+  //   notes: ['<Hangi teknolojiyi neden seçtin / hangi sorunu çözdün?>'],
+  //   stack: ['FastAPI'],
+  // },
+  // {
+  //   kind: 'masaüstü',
+  //   title: '<Uygulama adı>',
+  //   summary: '<Ne işe yarıyor?>',
+  //   notes: ["Python'u kurulu olmayan makinelerde çalışsın diye PyInstaller ile tek .exe olarak paketlendi."],
+  //   stack: ['Python', 'PyInstaller'],
+  // },
+  // {
+  //   kind: 'harita',
+  //   title: '<Uygulama adı>',
+  //   summary: '<Ne gösteriyor?>',
+  //   notes: ['<Harita kütüphanesini / veri kaynağını neden seçtin?>'],
+  //   stack: ['Leaflet'],
+  // },
 ];
 
 export default function Projects() {
   return (
-    <section
-      id="projects"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-      aria-label="Projeler"
-    >
-      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only">
-          Projeler
-        </h2>
-      </div>
-      <div>
-        <ol className="group/list">
-          {projects.map((project) => (
-            <li key={project.title} className="mb-12">
-              <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                <div className="z-10 sm:col-span-full">
-                  <h3 className="font-medium leading-snug text-slate-200">
-                    <a
-                      className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
-                      href={project.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label={`${project.title} (yeni sekmede açılır)`}
+    <section id="projects" aria-label="Projeler" className="fade-up mt-24 md:mt-36 [animation-delay:240ms]">
+      <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-ink">
+        Günlük / işler
+      </h2>
+      <p className="mt-3 mb-8 text-lg text-graphite">
+        Geliştirdiğim projelerin detaylarını{' '}
+        <a
+          href="https://github.com/cemozcelikkk"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="link-draw pb-0.5 text-ink [background-size:100%_1px] hover:opacity-80"
+        >
+          GitHub
+        </a>{' '}
+        profilimde bulabilirsiniz.
+      </p>
+
+      <ol className="space-y-5">
+        {projects.map((project, i) => (
+          <li
+            key={project.title}
+            className="group grid gap-x-8 gap-y-4 rounded-md border border-rule bg-card px-5 py-8 transition-colors duration-300 ease-out hover:border-rule-strong hover:bg-card-hover sm:px-8 md:grid-cols-[8rem_1fr] md:py-10"
+          >
+            <div className="flex gap-4 font-mono text-xs text-graphite md:flex-col md:gap-1 md:pt-1.5">
+              <span>№ {String(i + 1).padStart(2, '0')}</span>
+              <span>{project.kind}</span>
+            </div>
+
+            <div className="max-w-[62ch]">
+              <h3 className="font-mono text-xl font-medium leading-snug tracking-tight text-ink md:text-[1.4rem]">
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group/link inline-flex items-baseline gap-2 focus-visible:outline-none"
+                  >
+                    <span className="link-draw pb-0.5 group-hover/link:[background-size:100%_1px] group-focus-visible/link:[background-size:100%_1px]">
+                      {project.title}
+                    </span>
+                    <span
+                      className="inline-block text-sm text-graphite transition-[translate,color] duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ink"
+                      aria-hidden="true"
                     >
-                      <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                      <span>
-                        {project.title}
-                        <ExternalLink
-                          className="inline-block ml-1.5 h-4 w-4 shrink-0 translate-y-px transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </a>
-                  </h3>
-                  <p className="mt-2 text-sm leading-normal text-slate-400">
-                    {project.description}
-                  </p>
-                  <ul className="mt-4 flex flex-wrap" aria-label="Teknolojiler">
-                    {project.tags.map((tag) => (
-                      <li key={tag} className="mr-1.5 mt-2">
-                        <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
-                          {tag}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+                      ↗
+                    </span>
+                    <span className="sr-only"> (yeni sekmede açılır)</span>
+                  </a>
+                ) : (
+                  project.title
+                )}
+              </h3>
+              <p className="mt-2 text-lg leading-[1.6] text-pretty text-graphite">{project.summary}</p>
+
+              <ul className="mt-6 max-w-[60ch] space-y-3 text-[1.05rem] leading-[1.75] text-pretty text-body">
+                {project.notes.map((note) => (
+                  <li key={note} className="grid grid-cols-[1.5rem_1fr]">
+                    <span className="font-mono text-graphite transition-colors duration-300 group-hover:text-body" aria-hidden="true">→</span>
+                    <span>{note}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <ul className="mt-7 flex flex-wrap gap-2 font-mono text-xs" aria-label="Kullanılan teknolojiler">
+                {project.stack.map((tech) => (
+                  <li key={tech} className="rounded-sm border border-rule px-2 py-1 text-graphite transition-colors duration-300 group-hover:border-rule-strong">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

@@ -1,38 +1,106 @@
 @import "tailwindcss";
 
-/* Base styles */
+/* Kağıt / mürekkep paleti — tek renk ailesi, aksan yok */
+/* ink: başlıklar · body: normal metin · graphite: ikincil detay */
+:root {
+  --paper: #f2efe8;
+  --card: #f8f6f1;
+  --card-hover: #fbfaf7;
+  --ink: #1d1c1a;
+  --body: rgb(29 28 26 / 0.85);
+  --graphite: rgb(29 28 26 / 0.62);
+  --rule: rgb(29 28 26 / 0.14);
+  --rule-strong: rgb(29 28 26 / 0.3);
+  --grid: rgb(29 28 26 / 0.05);
+  --chip: rgb(29 28 26 / 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #18181b; /* zinc-900 */
+    --card: #1f1f23;
+    --card-hover: #232328;
+    --ink: #ffffff;
+    --body: rgb(255 255 255 / 0.85);
+    --graphite: rgb(255 255 255 / 0.6);
+    --rule: rgb(255 255 255 / 0.1);
+    --rule-strong: rgb(255 255 255 / 0.22);
+    --grid: rgb(255 255 255 / 0.025);
+    --chip: rgb(255 255 255 / 0.08);
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-graphite: var(--graphite);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-chip: var(--chip);
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #94a3b8;
+  font-family: var(--font-serif);
+  color: var(--body);
+  background-color: var(--paper);
+  /* Mühendislik defteri ızgarası — neredeyse görünmez */
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
-
-/* Selection color */
 ::selection {
-  background-color: rgba(45, 212, 191, 0.25);
-  color: #e2e8f0;
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+/* Alt çizgi soldan sağa yumuşakça çizilir */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 350ms cubic-bezier(0.22, 1, 0.36, 1), color 200ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+/* Sayfa açılışında hafif aşağıdan belirme; gecikme bileşende [animation-delay:…] ile verilir */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
 }
