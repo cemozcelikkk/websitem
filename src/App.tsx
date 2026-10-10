@@ -1,7 +1,6 @@
 import Header from './components/Header';
 import About from './components/About';
 import Projects from './components/Projects';
-import Education from './components/Education';
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
         <main>
           <About />
           <Projects />
-          <Education />
         </main>
         <footer className="mt-32 flex flex-wrap justify-between gap-4 border-t border-rule pt-4 pb-8 font-mono text-xs text-graphite">
           <a
