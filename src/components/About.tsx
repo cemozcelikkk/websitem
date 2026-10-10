@@ -16,7 +16,6 @@ export default function About() {
 
       <div className="max-w-[62ch] space-y-6 text-lg leading-[1.75] text-pretty text-body md:text-xl">
         <p>
-          <Code>Çukurova Üniversitesi</Code>'nde bilgisayar bilimleri okuyorum, son sınıftayım.
           Okulda algoritmaları ve veri yapılarını öğreniyorum; geri kalan zamanda insanların
           kullandığı küçük ürünler yapıyorum — <Code>API</Code>'sini yazıp sunucusunu kendim
           kurduğum, <Code>DNS</Code> kaydını kendim girdiğim türden.
