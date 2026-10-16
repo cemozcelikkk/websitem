@@ -5,6 +5,7 @@ import { findTopic } from '../routes';
 
 export default function TopicPage({ topic: slug }: { topic: string }) {
   const topic = findTopic(slug)!;
+  const installation = topic.chapters.find((chapter) => !chapter.draft && chapter.slug === 'virtualbox-ubuntu-kurulum');
   const minutes = topic.chapters.reduce((sum, c) => sum + c.readingMinutes, 0);
 
   return (
@@ -35,6 +36,14 @@ export default function TopicPage({ topic: slug }: { topic: string }) {
         <div className="mt-12 max-w-[720px]">
           <ArticleBody html={topic.html} />
         </div>
+      )}
+
+      {topic.slug === 'ubuntu' && installation && (
+        <nav aria-label="Ubuntu kurulumuna devam et" className="mt-10 max-w-[720px]">
+          <a href="/blog/ubuntu/virtualbox-ubuntu-kurulum" className="focus-ring block rounded-md border border-rule-strong p-6 text-xl font-semibold text-ink underline underline-offset-4 transition-colors hover:bg-paper-deep">
+            VirtualBox üzerinde Ubuntu kur <span aria-hidden="true">→</span>
+          </a>
+        </nav>
       )}
 
       <section aria-labelledby="chapters-title" className="mt-16">

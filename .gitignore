@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Keep production output tests; root dist remains ignored
+!tests/dist/
+!tests/dist/**
