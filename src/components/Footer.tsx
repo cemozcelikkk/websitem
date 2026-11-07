@@ -9,13 +9,13 @@ export default function Footer() {
       <ul className="flex flex-wrap gap-x-5 gap-y-2" aria-label="İletişim">
         {links.map((link) => (
           <li key={link.label}>
-            <a href={link.href} {...(isExternal(link.href) && externalProps)} className="link-draw focus-ring pb-0.5 hover:text-ink">
+            <a href={link.href} {...(isExternal(link.href) && externalProps)} className="link-draw focus-ring pb-0.5 hover:text-royal-text">
               {link.href.startsWith('mailto:') ? SITE.email : link.label}
             </a>
           </li>
         ))}
         <li>
-          <a href="/rss.xml" className="link-draw focus-ring pb-0.5 hover:text-ink">RSS</a>
+          <a href="/rss.xml" className="link-draw focus-ring pb-0.5 hover:text-royal-text">RSS</a>
         </li>
       </ul>
       <span>© {__BUILD_YEAR__} {SITE.name}</span>

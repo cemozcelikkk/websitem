@@ -1,35 +1,101 @@
 @import "tailwindcss";
 
-/* Kağıt / mürekkep paleti — tek renk ailesi, aksan yok */
-/* ink: başlıklar · body: normal metin · graphite: ikincil detay */
-:root {
-  --paper: #f2efe8;
-  --card: #f8f6f1;
-  --card-hover: #fbfaf7;
-  --ink: #1d1c1a;
-  --body: rgb(29 28 26 / 0.85);
-  /* 0.62 → 0.68: kağıt zemin üzerinde WCAG AA (4.5:1) için */
-  --graphite: rgb(29 28 26 / 0.68);
-  --rule: rgb(29 28 26 / 0.14);
-  --rule-strong: rgb(29 28 26 / 0.3);
-  --grid: rgb(29 28 26 / 0.05);
-  --chip: rgb(29 28 26 / 0.07);
-  --code-bg: #f8f6f1;
+/*
+ * İki tema. Tema <html data-theme="light|dark"> ile seçilir (index.html'deki erken script ve
+ * ThemeToggle). JS yoksa sistem tercihi (prefers-color-scheme) kullanılır.
+ *
+ * ink: başlıklar · body: normal metin · graphite: ikincil detay
+ * royal: vurgu (ızgara, ışık, çizgiler) · royal-text: okunacak vurgu metni (hover)
+ * action-text: aksiyon metni · action-line: aksiyon çizgisi/çerçevesi · action-mark: vurgu zemini
+ */
+
+/* Açık tema: Soft Peach · Deep Teal Green · Coral Orange */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --paper: #f9eadc; /* Soft Peach */
+  --card: #fcf2e8;
+  --card-hover: #fdf6ef;
+  --ink: #17645f; /* Deep Teal Green — başlıklar ve ikonlar (6.0:1) */
+  --body: #0f4744; /* Teal ailesinden koyu ton — uzun metin (9:1) */
+  --graphite: #476663; /* ikincil metin, opak (5.4:1) */
+  --rule: rgb(23 100 95 / 0.15);
+  --rule-strong: rgb(23 100 95 / 0.32);
+  --chip: rgb(23 100 95 / 0.07);
+  --code-bg: #fcf2e8;
+
+  --royal: #17645f;
+  --royal-text: #17645f;
+  /* Coral Orange şeftali zeminde metin olamayacak kadar açık (2.5:1); aksiyon çizgisi,
+     çerçeve ve vurgu zemini olarak kullanılır, okunan metin teal kalır. */
+  --action-text: #17645f;
+  --action-line: #ff6845;
+  --action-mark: rgb(255 104 69 / 0.24);
+  --on-royal: #ffffff;
+
+  --grid: rgba(23, 100, 95, 0.08);
+  /* Fare takip ışığı: Teal merkez → Coral hale → şeftali zemine söner */
+  --spot-core: rgb(23 100 95 / 0.13);
+  --spot-mid: rgb(255 104 69 / 0.08);
+  /* Etkileşimli arka plan (src/effects/field.ts) */
+  --field-grid-active: rgb(23 100 95 / 0.34);
+  --field-glow: 255, 104, 69;
+  --field-glow-strength: 0.06;
+  --field-dust: rgb(23 100 95 / 0.32);
 }
 
+/* Koyu tema: Charcoal Black · Off-white + Royal Blue · Tangerine Orange */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #12141d; /* Charcoal Black */
+  --card: #181a24;
+  --card-hover: #1d2030;
+  --ink: #f4f6fb; /* Off-white */
+  --body: rgb(244 246 251 / 0.85);
+  --graphite: rgb(244 246 251 / 0.62);
+  --rule: rgb(244 246 251 / 0.1);
+  --rule-strong: rgb(244 246 251 / 0.22);
+  --chip: rgb(244 246 251 / 0.07);
+  --code-bg: #0e1017;
+
+  /* Royal Blue koyu zeminde metin olarak 3.3:1 kalır; okunacak metinde açık tonu (5.6:1). */
+  --royal: #105bff;
+  --royal-text: #6c9bff;
+  --action-text: #fe8500; /* Tangerine Orange (7.6:1) */
+  --action-line: #fe8500;
+  --action-mark: transparent;
+  --on-royal: #ffffff;
+
+  --grid: rgba(255, 255, 255, 0.05);
+  /* Fare takip ışığı: Royal Blue → Charcoal geçişi */
+  --spot-core: rgb(16 91 255 / 0.16);
+  --spot-mid: rgb(16 91 255 / 0.05);
+  --field-grid-active: rgb(16 91 255 / 0.55);
+  --field-glow: 16, 91, 255;
+  --field-glow-strength: 0.1;
+  --field-dust: rgb(170 195 255 / 0.4);
+}
+
+/* JS çalışmazsa (veya henüz çalışmadıysa) sistem tercihi: koyu temanın aynısı */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #18181b; /* zinc-900 */
-    --card: #1f1f23;
-    --card-hover: #232328;
-    --ink: #ffffff;
-    --body: rgb(255 255 255 / 0.85);
-    --graphite: rgb(255 255 255 / 0.6);
-    --rule: rgb(255 255 255 / 0.1);
-    --rule-strong: rgb(255 255 255 / 0.22);
-    --grid: rgb(255 255 255 / 0.025);
-    --chip: rgb(255 255 255 / 0.08);
-    --code-bg: #131316;
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --paper: #12141d;
+    --card: #181a24;
+    --card-hover: #1d2030;
+    --ink: #f4f6fb;
+    --body: rgb(244 246 251 / 0.85);
+    --graphite: rgb(244 246 251 / 0.62);
+    --rule: rgb(244 246 251 / 0.1);
+    --rule-strong: rgb(244 246 251 / 0.22);
+    --chip: rgb(244 246 251 / 0.07);
+    --code-bg: #0e1017;
+    --royal: #105bff;
+    --royal-text: #6c9bff;
+    --action-text: #fe8500;
+    --action-line: #fe8500;
+    --action-mark: transparent;
+    --grid: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -43,6 +109,11 @@
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
   --color-chip: var(--chip);
+  --color-royal: var(--royal);
+  --color-royal-text: var(--royal-text);
+  --color-action: var(--action-text);
+  --color-action-line: var(--action-line);
+  --color-action-mark: var(--action-mark);
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
 }
@@ -65,6 +136,60 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * Açık temada okunabilirlik: açık zeminde ince harfler silik kalıyor.
+ * Gövde ve mono metinler 400 → 500, ince (font-normal) başlıklar 500; yumuşatma kapatılır
+ * ki harfler incelmesin. Koyu tema etkilenmez.
+ */
+[data-theme="light"] body {
+  font-weight: 500;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+[data-theme="light"] .font-normal {
+  font-weight: 500;
+}
+/* Gövde 500 olunca vurgular ve makale başlıkları bir kademe kalınlaşır (hiyerarşi korunur). */
+[data-theme="light"] .prose-article strong,
+[data-theme="light"] .prose-article h2,
+[data-theme="light"] .prose-article h3,
+[data-theme="light"] .font-medium {
+  font-weight: 600;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) body {
+    font-weight: 500;
+  }
+  :root:not([data-theme]) .font-normal {
+    font-weight: 500;
+  }
+}
+
+/* Etkileşimli arka plan etkinken statik ızgara canvas'a devredilir. */
+.field {
+  display: none;
+}
+.field-active .field {
+  display: block;
+}
+.field-active body {
+  background-image: none;
+}
+
+/* Fare takip ışığı: --x / --y field.ts tarafından güncellenir, ızgaranın altında kalır. */
+.field-spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    560px circle at var(--x, -1000px) var(--y, -1000px),
+    var(--spot-core),
+    var(--spot-mid) 35%,
+    transparent 70%
+  );
+  opacity: var(--spot, 0);
+  transition: opacity 500ms ease;
+}
+
 h1,
 h2,
 h3 {
@@ -72,22 +197,34 @@ h3 {
 }
 
 ::selection {
-  background-color: var(--ink);
-  color: var(--paper);
+  background-color: var(--royal);
+  color: var(--on-royal);
 }
 
-/* Klavye odağı: ince, mürekkep renginde çerçeve */
+/* Tema butonu: hangi ikonun görüneceğini CSS seçer (statik HTML ile istemci aynı kalır). */
+.theme-icon-sun {
+  display: none;
+}
+[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+/* Klavye odağı: ince, Royal Blue (açık ton) çerçeve */
 @utility focus-ring {
   &:focus-visible {
-    outline: 1px solid var(--ink);
+    outline: 1px solid var(--royal-text);
     outline-offset: 4px;
     border-radius: 2px;
   }
 }
 
 /* Alt çizgi soldan sağa yumuşakça çizilir */
+/* Çizgi rengi varsayılan olarak metin rengidir; --line ile değiştirilebilir (ör. aksiyon çizgisi). */
 @utility link-draw {
-  background-image: linear-gradient(currentColor, currentColor);
+  background-image: linear-gradient(var(--line, currentColor), var(--line, currentColor));
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0% 1px;
@@ -172,20 +309,23 @@ h3 {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
-    text-decoration-color: var(--rule-strong);
-    transition: text-decoration-color 200ms ease;
+    text-decoration-color: color-mix(in srgb, var(--royal) 60%, transparent);
+    transition: color 200ms ease, text-decoration-color 200ms ease;
   }
   & a:not(.heading-anchor):hover {
+    color: var(--royal-text);
     text-decoration-color: currentColor;
   }
   & a:focus-visible {
-    outline: 1px solid var(--ink);
+    outline: 1px solid var(--royal-text);
     outline-offset: 3px;
   }
 
+  /* Önemli kelime vurguları: koyu temada Tangerine metin, açık temada Sun Yellow fosforlu kalem */
   & strong {
-    color: var(--ink);
+    color: var(--action-text);
     font-weight: 500;
+    background: linear-gradient(transparent 58%, var(--action-mark) 58%);
   }
 
   & ul,
@@ -276,7 +416,7 @@ h3 {
     color: var(--ink);
   }
   & .copy-button:focus-visible {
-    outline: 1px solid var(--ink);
+    outline: 1px solid var(--royal-text);
     outline-offset: 2px;
   }
   & pre {
@@ -288,7 +428,7 @@ h3 {
     tab-size: 2;
   }
   & pre:focus-visible {
-    outline: 1px solid var(--ink);
+    outline: 1px solid var(--royal-text);
     outline-offset: -2px;
   }
   & .shiki,
@@ -299,15 +439,15 @@ h3 {
     background: transparent;
   }
   & .code-block--terminal {
-    background: #1b1b1f;
-    border-color: #2c2c32;
+    background: #0b0c12;
+    border-color: #262a38;
   }
   & .code-block--terminal figcaption {
-    border-color: #2c2c32;
+    border-color: #262a38;
     color: rgb(255 255 255 / 0.6);
   }
   & .code-block--terminal .copy-button {
-    border-color: #3a3a42;
+    border-color: #343a4e;
     color: rgb(255 255 255 / 0.65);
   }
   & .code-block--terminal .copy-button:hover {
@@ -423,13 +563,16 @@ h3 {
   }
 }
 
+
+/* Kod renklendirme koyu temada koyu palete geçer (terminal blokları her zaman koyu). */
+[data-theme="dark"] .prose-article .shiki,
+[data-theme="dark"] .prose-article .shiki span {
+  color: var(--shiki-dark);
+}
 @media (prefers-color-scheme: dark) {
-  .prose-article .shiki,
-  .prose-article .shiki span {
+  :root:not([data-theme]) .prose-article .shiki,
+  :root:not([data-theme]) .prose-article .shiki span {
     color: var(--shiki-dark);
-  }
-  .prose-article .code-block--terminal {
-    background: #0e0e10;
   }
 }
 

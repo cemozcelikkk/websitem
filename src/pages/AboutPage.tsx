@@ -49,7 +49,7 @@ export default function AboutPage() {
         <SectionHeading id="contact-title">İletişim</SectionHeading>
         <p className="max-w-[62ch] text-lg leading-[1.75] text-body">
           Bir yazı ya da proje hakkında söylemek istediğin bir şey varsa bana{' '}
-          <a href={`mailto:${SITE.email}`} className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px]">
+          <a href={`mailto:${SITE.email}`} className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px] hover:text-royal-text">
             {SITE.email}
           </a>{' '}
           adresinden ulaşabilirsin.
@@ -57,7 +57,7 @@ export default function AboutPage() {
         <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs">
           {[github, linkedin, instagram, email].map((link) => (
             <li key={link.label}>
-              <a href={link.href} {...(isExternal(link.href) && externalProps)} className="link-draw focus-ring pb-0.5 text-graphite hover:text-ink">
+              <a href={link.href} {...(isExternal(link.href) && externalProps)} className="link-draw focus-ring pb-0.5 text-graphite hover:text-royal-text">
                 {link.label}
               </a>
             </li>

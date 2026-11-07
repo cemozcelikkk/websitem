@@ -1,5 +1,6 @@
 import { email, externalProps, github, instagram, isExternal, linkedin } from '../links';
 import SocialIcon from './SocialIcon';
+import ThemeToggle from './ThemeToggle';
 
 const nav = [
   { label: 'Yazılar', href: '/blog' },
@@ -25,7 +26,7 @@ export default function Header({ pathname }: { pathname: string }) {
                 <a
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`link-draw focus-ring py-1 transition-colors ${active ? 'text-ink [background-size:100%_1px]' : 'text-graphite hover:text-ink'}`}
+                  className={`link-draw focus-ring py-1 transition-colors ${active ? 'text-action [--line:var(--action-line)] [background-size:100%_2px]' : 'text-graphite hover:text-royal-text'}`}
                 >
                   {item.label}
                 </a>
@@ -34,21 +35,26 @@ export default function Header({ pathname }: { pathname: string }) {
           })}
         </ul>
       </nav>
-      <ul className="-mr-1.5 flex items-center gap-1 sm:border-l sm:border-rule sm:pl-4" aria-label="Sosyal bağlantılar">
-        {socials.map((link) => (
-          <li key={link.label}>
-            <a
-              href={link.href}
-              aria-label={link.label}
-              title={link.label}
-              {...(isExternal(link.href) && externalProps)}
-              className="focus-ring block p-1.5 text-ink opacity-60 transition-[opacity,translate] duration-300 ease-out hover:-translate-y-0.5 hover:opacity-100 focus-visible:opacity-100"
-            >
-              <SocialIcon kind={link.kind} />
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="-mr-1.5 flex items-center gap-2 sm:border-l sm:border-rule sm:pl-4">
+        <ul className="flex items-center gap-1" aria-label="Sosyal bağlantılar">
+          {socials.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                aria-label={link.label}
+                title={link.label}
+                {...(isExternal(link.href) && externalProps)}
+                className="focus-ring block p-1.5 text-ink opacity-60 transition-[opacity,translate] duration-300 ease-out hover:-translate-y-0.5 hover:opacity-100 focus-visible:opacity-100"
+              >
+                <SocialIcon kind={link.kind} />
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div className="border-l border-rule pl-2">
+          <ThemeToggle />
+        </div>
+      </div>
     </header>
   );
 }

@@ -6,10 +6,21 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
     <link rel="alternate" type="application/rss+xml" title="Cem Özçelik — Yazılar" href="/rss.xml" />
     <meta name="author" content="Cem Özçelik" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f9eadc" />
+    <!-- Tema, sayfa boyanmadan önce seçilir: önce kullanıcının kaydettiği seçim, yoksa sistem tercihi. -->
+    <script>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+        if (t === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#12141d');
+      })();
+    </script>
     <!--app-head-->
   </head>
   <body>

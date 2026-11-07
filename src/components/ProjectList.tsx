@@ -71,11 +71,11 @@ export function ProjectCards({ projects }: { projects: Project[] }) {
             </div>
 
             <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-graphite">
-              <a href={`/projeler/${project.slug}`} className="link-draw focus-ring pb-0.5 hover:text-ink">
+              <a href={`/projeler/${project.slug}`} className="link-draw focus-ring pb-0.5 hover:text-royal-text">
                 Proje detayı <span aria-hidden="true">→</span>
               </a>
               {project.url && (
-                <ExternalLink href={project.url} className="hover:text-ink">
+                <ExternalLink href={project.url} className="hover:text-royal-text">
                   {new URL(project.url).host}
                 </ExternalLink>
               )}

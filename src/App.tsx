@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import InteractiveBackground from './components/InteractiveBackground';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import ChapterPage from './pages/ChapterPage';
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <div className="min-h-screen px-4 py-8 sm:px-8 md:py-12 md:pl-[9vw] md:pr-[6vw]">
+      <InteractiveBackground />
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-10 focus:bg-paper focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:text-ink focus:outline-1">
         İçeriğe geç
       </a>

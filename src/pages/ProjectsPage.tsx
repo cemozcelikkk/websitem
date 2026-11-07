@@ -10,7 +10,7 @@ export default function ProjectsPage() {
         <p>
           Bu liste bir yetenek tablosu değil, bir günlük. Her işin altına neyi kullandığımı ve neden
           onu seçtiğimi not ettim. Geliştirdiğim projelerin detaylarını{' '}
-          <a href={SITE.github} target="_blank" rel="noreferrer noopener" className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px]">
+          <a href={SITE.github} target="_blank" rel="noreferrer noopener" className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px] hover:text-royal-text">
             GitHub
           </a>{' '}
           profilimde bulabilirsiniz.

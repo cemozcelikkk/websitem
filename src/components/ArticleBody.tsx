@@ -58,11 +58,10 @@ export default function ArticleBody({ html, hasMermaid = false }: { html: string
     // Mermaid büyük bir paket; yalnızca diyagram içeren sayfada ve ihtiyaç anında yüklenir.
     import('mermaid').then(({ default: mermaid }) => {
       if (cancelled) return;
-      const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       mermaid.initialize({
         startOnLoad: false,
         securityLevel: 'strict',
-        theme: dark ? 'dark' : 'neutral',
+        theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'neutral',
         fontFamily: '"IBM Plex Mono", ui-monospace, monospace',
       });
       mermaid.run({ nodes: root.querySelectorAll<HTMLElement>('pre.mermaid:not([data-processed])') });

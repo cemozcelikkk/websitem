@@ -8,13 +8,13 @@ export default function NotFoundPage() {
         <p>Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.</p>
       </PageHeader>
       <p className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm">
-        <a href="/" className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px]">
+        <a href="/" className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px] hover:text-royal-text">
           Ana sayfa
         </a>
-        <a href="/blog" className="link-draw focus-ring pb-0.5 text-graphite hover:text-ink">
+        <a href="/blog" className="link-draw focus-ring pb-0.5 text-graphite hover:text-royal-text">
           Yazılar
         </a>
-        <a href="/projeler" className="link-draw focus-ring pb-0.5 text-graphite hover:text-ink">
+        <a href="/projeler" className="link-draw focus-ring pb-0.5 text-graphite hover:text-royal-text">
           Projeler
         </a>
       </p>

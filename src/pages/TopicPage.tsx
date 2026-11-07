@@ -57,7 +57,7 @@ export default function TopicPage({ topic: slug }: { topic: string }) {
             </p>
             <p className="mt-4 font-mono text-xs text-graphite">
               Haberdar olmak için{' '}
-              <a href="/rss.xml" className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px]">
+              <a href="/rss.xml" className="link-draw focus-ring pb-0.5 text-ink [background-size:100%_1px] hover:text-royal-text">
                 RSS
               </a>{' '}
               aboneliği kullanabilirsin.

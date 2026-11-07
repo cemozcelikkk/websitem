@@ -66,7 +66,7 @@ export default function PostPage({ slug }: { slug: string }) {
           </p>
         )}
         <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em]">
-          <a href={`/blog?kategori=${post.category}`} className="link-draw focus-ring pb-0.5 text-graphite hover:text-ink">
+          <a href={`/blog?kategori=${post.category}`} className="link-draw focus-ring pb-0.5 text-graphite hover:text-royal-text">
             {categoryLabel(post.category)}
           </a>
         </p>

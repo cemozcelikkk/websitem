@@ -14,7 +14,7 @@ export function SectionHeading({ id, children, link }: { id: string; children: R
         {children}
       </h2>
       {link && (
-        <a href={link.href} className="link-draw focus-ring shrink-0 pb-0.5 font-mono text-xs text-graphite hover:text-ink">
+        <a href={link.href} className="link-draw focus-ring shrink-0 pb-0.5 font-mono text-xs text-graphite hover:text-royal-text">
           {link.label} <span aria-hidden="true">→</span>
         </a>
       )}
@@ -40,7 +40,7 @@ export function Breadcrumb({ items }: { items: { label: string; href?: string }[
           <li key={item.label} className="flex min-w-0 items-baseline gap-x-2">
             {i > 0 && <span aria-hidden="true">/</span>}
             {item.href ? (
-              <a href={item.href} className="link-draw focus-ring pb-0.5 hover:text-ink">
+              <a href={item.href} className="link-draw focus-ring pb-0.5 hover:text-royal-text">
                 {item.label}
               </a>
             ) : (
@@ -57,7 +57,7 @@ export function Breadcrumb({ items }: { items: { label: string; href?: string }[
 
 export function BackLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a href={href} className="link-draw focus-ring inline-block pb-0.5 font-mono text-xs text-graphite hover:text-ink">
+    <a href={href} className="link-draw focus-ring inline-block pb-0.5 font-mono text-xs text-graphite hover:text-royal-text">
       <span aria-hidden="true">← </span>
       {children}
     </a>

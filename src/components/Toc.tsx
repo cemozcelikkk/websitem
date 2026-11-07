@@ -5,7 +5,7 @@ function TocList({ items }: { items: TocItem[] }) {
     <ol className="space-y-2 font-mono text-xs leading-relaxed">
       {items.map((item) => (
         <li key={item.id} className={item.depth === 3 ? 'pl-4' : ''}>
-          <a href={`#${item.id}`} className="link-draw focus-ring pb-0.5 text-graphite hover:text-ink">
+          <a href={`#${item.id}`} className="link-draw focus-ring pb-0.5 text-graphite hover:text-royal-text">
             {item.text}
           </a>
         </li>

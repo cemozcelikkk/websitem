@@ -50,7 +50,7 @@ export default function BlogPage({ search }: { search: string }) {
                     href={f.id ? `/blog?kategori=${f.id}` : '/blog'}
                     aria-current={selected ? 'true' : undefined}
                     className={`focus-ring inline-flex items-baseline gap-1.5 rounded-sm border px-2.5 py-1.5 transition-colors ${
-                      selected ? 'border-ink bg-chip text-ink' : 'border-rule text-graphite hover:border-rule-strong hover:text-ink'
+                      selected ? 'border-action-line bg-action-mark text-action' : 'border-rule text-graphite hover:border-royal hover:text-royal-text'
                     }`}
                   >
                     {f.label}
@@ -74,7 +74,7 @@ export default function BlogPage({ search }: { search: string }) {
           ) : filtered.length === 0 ? (
             <div className="border-y border-rule py-8">
               <p className="text-lg leading-[1.7] text-graphite">{categoryLabel(active!)} kategorisinde henüz yazı yok.</p>
-              <a href="/blog" className="link-draw focus-ring mt-4 inline-block pb-0.5 font-mono text-xs text-ink [background-size:100%_1px]">
+              <a href="/blog" className="link-draw focus-ring mt-4 inline-block pb-0.5 font-mono text-xs text-ink [background-size:100%_1px] hover:text-royal-text">
                 Tüm yazıları göster
               </a>
             </div>
